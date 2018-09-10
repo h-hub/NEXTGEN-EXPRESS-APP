@@ -11,6 +11,8 @@ const config = require('./config/database');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+const bucketlist = require('./controllers/bucketlist');
+
 const app = express();
 const port = 3000;
 
@@ -33,6 +35,7 @@ app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/bucketlist',bucketlist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -51,6 +54,8 @@ app.use(function(err, req, res, next) {
 });
 
 mongoose.connect(config.database);
+
+
 
 //Listen to port 3000
 app.listen(port, () => {
